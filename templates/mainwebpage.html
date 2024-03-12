@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarization</title>
+    <link rel="stylesheet" href="/static/styles/style.css">
+    <div class="img-main-page"><img src="/static/Logo.png" alt="Company Logo"></div>
+</head>
+
+<body>
+ 
+    <div class="text-input-area">
+        <form  action="/summarize" method="POST">
+            <h1>Text Summarization</h1>
+            <p>Option 1: Please enter your text below (minimum 30 words and maximum 1000 words for optimal results):</p>
+            <label for="userText">Enter Text:</label>
+            <textarea id="userText" name="userText" rows="8" cols="50"></textarea> 
+            <button type="submit">Submit</button>
+        </form>
+        <br><br>
+        <form action="/summarize_pdf" method="POST" enctype="multipart/form-data">
+            <p>Option 2: Please upload a PDF file (minimum 30 words and maximum 1000 words for optimal results): </p>
+            <input type="file" name="pdf_file">
+            <button type="submit">Upload and summarize</button>
+        </form>
+
+    </div>
+
+    <!-- Side Panel for Summarization History -->
+    <div class="side-panel">
+        <h2>Summarization History</h2>
+        <ul>
+            {% for entry in summarization_history %}
+                <li>
+                    <strong>Input:</strong> {{ entry.input_text }}<br><br>
+                    <strong>Summary:</strong> {{ entry.summarized_text }}
+                    <br><br><br><br>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flash">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+
+</body>
+
+</html>
