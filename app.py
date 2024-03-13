@@ -4,7 +4,7 @@ from flask_bcrypt import Bcrypt
 from langchain import HuggingFaceHub
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
-from langchain import HuggingFaceHub
+from langchain.llms import HuggingFaceHub
 from langchain.document_loaders import PyPDFLoader
 from langchain.chains import RetrievalQA
 from langchain.text_splitter import CharacterTextSplitter
